@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
+        android:textColor="#581845"
 
         android:textSize="20dp" />
 
@@ -19,6 +20,8 @@
         android:paddingLeft="10dp"
         android:text="Recipe Name"
         android:textSize="20dp"
+        android:textColor="#581845"
+
         android:layout_below="@+id/adminvehicle"
         />
     <TextView
@@ -27,6 +30,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:text="Recipe Name"
+        android:textColor="#581845"
+
         android:layout_below="@+id/customer"
         android:textSize="20dp" />
     <TextView
@@ -35,6 +40,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:text="Location"
+        android:textColor="#581845"
+
         android:layout_below="@+id/provider"
         android:textSize="20dp" />
 
@@ -44,6 +51,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:text="Location"
+        android:textColor="#581845"
+
         android:layout_below="@+id/provider"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/money"
@@ -59,6 +68,8 @@
         android:layout_below="@+id/provider"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/weight"
+        android:textColor="#581845"
+
         android:textSize="20dp" />
 
     <TextView
@@ -68,6 +79,8 @@
         android:paddingLeft="10dp"
         android:text="Location"
         android:layout_below="@+id/weight"
+        android:textColor="#581845"
+
         android:layout_marginLeft="10dp"
         android:textSize="20dp" />
 

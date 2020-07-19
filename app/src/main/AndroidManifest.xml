@@ -23,7 +23,6 @@
         <activity android:name=".Admin" />
         <activity android:name=".Login" />
         <activity android:name=".Register" />
-        <activity android:name=".ProfileActivity" />
         <activity android:name=".Verify_Phone_Activity" />
         <activity android:name=".MainActivity">
             <intent-filter>

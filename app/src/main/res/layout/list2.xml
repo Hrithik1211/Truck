@@ -19,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
+        android:textColor="#581845"
 
         android:textSize="20dp" />
 
@@ -29,7 +30,10 @@
         android:paddingLeft="10dp"
         android:text="Recipe Name"
         android:textSize="20dp"
+
         android:layout_below="@+id/pvehicle"
+        android:textColor="#581845"
+
         />
     <TextView
         android:id="@+id/pweight"
@@ -38,6 +42,8 @@
         android:paddingLeft="10dp"
         android:text="Recipe Name"
         android:layout_below="@+id/pmaterialtype"
+        android:textColor="#581845"
+
         android:textSize="20dp" />
     <TextView
         android:id="@+id/plocation"
@@ -46,6 +52,8 @@
         android:paddingLeft="10dp"
         android:text="Location"
         android:layout_below="@+id/pweight"
+        android:textColor="#581845"
+
         android:textSize="20dp" />
 
 
@@ -56,6 +64,8 @@
         android:paddingLeft="10dp"
         android:text="Location"
         android:layout_below="@+id/plocation"
+        android:textColor="#581845"
+
         android:textSize="20dp" />
     <TextView
         android:id="@+id/pvehiclenumber"
@@ -64,6 +74,8 @@
         android:paddingLeft="10dp"
         android:text="Location"
         android:layout_below="@+id/pdrivernumber"
+        android:textColor="#581845"
+
         android:textSize="20dp" />
     <Button
         android:layout_width="wrap_content"
@@ -72,6 +84,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
         android:background="@drawable/search_layoutbutton"
+
         android:text="Track"
         android:id="@+id/pbutton"
         />

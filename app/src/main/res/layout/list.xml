@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/searchimage"
         android:paddingLeft="10dp"
+        android:textColor="#581845"
 
         android:textSize="20dp" />
 
@@ -35,6 +36,8 @@
         android:paddingLeft="10dp"
         android:text="Recipe Name"
         android:textSize="20dp"
+        android:textColor="#581845"
+
         android:layout_below="@+id/providervehicle"
         />
     <TextView
@@ -45,6 +48,8 @@
         android:paddingLeft="10dp"
         android:text="Recipe Name"
         android:layout_below="@+id/providermaterialtype"
+        android:textColor="#581845"
+
         android:textSize="20dp" />
     <TextView
         android:id="@+id/location"
@@ -53,6 +58,9 @@
         android:layout_toRightOf="@+id/searchimage"
         android:paddingLeft="10dp"
         android:text="Location"
+        android:textColor="#581845"
+
+
         android:layout_below="@+id/providerweight"
         android:textSize="20dp" />
 

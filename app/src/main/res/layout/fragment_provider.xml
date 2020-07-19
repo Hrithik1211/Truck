@@ -23,6 +23,8 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:id="@+id/providerlist"
+      android:layout_below="@+id/titleimage"
+      android:layout_above="@id/bottomnavigationmenu"
       />
 
   <RelativeLayout
@@ -54,7 +56,16 @@
   <FrameLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:layout_above="@id/bottomnavigationmenu"
+      android:layout_below="@id/titleimage"
     android:id="@+id/framelayout"
+
     />
+  <ImageView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:src="@drawable/trucken_transperanttitle"
+      android:id="@+id/titleimage"
+      />
 
 </RelativeLayout>
