@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity  {
 
     Spinner spinner;
     EditText editText;  int count1=0;
+    int admin=0;
+    String user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +81,9 @@ public class MainActivity extends AppCompatActivity  {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        final String usertype [] = { "Driver" , "Customer"};
+
+
+        final String usertype [] = { "Driver" , "Customer","Admin Login"};
         spinner = (Spinner) findViewById(R.id.loginuser);
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, usertype));
 
@@ -92,10 +96,24 @@ public class MainActivity extends AppCompatActivity  {
 
             @Override
             public void onTextChanged(final CharSequence s, int start, int before, int count) {
-                DatabaseReference ref;
+                DatabaseReference ref,reference;
 
-                if(s.toString().length()<10)
-                    count1=0;
+                reference = FirebaseDatabase.getInstance().getReference("Admin");
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.hasChild(s.toString())){
+                            admin =1;
+                        }
+                        else
+                            admin=0;
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                    }
+                });
+
                 ref = FirebaseDatabase.getInstance().getReference("Registered");
                 ref.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -125,7 +143,7 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 String code = "91";//CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
-                String user = usertype[spinner.getSelectedItemPosition()];
+                 user = usertype[spinner.getSelectedItemPosition()];
                 DatabaseReference ref;
 
                 ref = FirebaseDatabase.getInstance().getReference("Registered");
@@ -156,7 +174,20 @@ public class MainActivity extends AppCompatActivity  {
 //                    public void onCancelled(DatabaseError error) {
 //                    }
 //                });
-                if(count1==1){
+
+             /*   if(user.equals("Admin Login")){
+                    if(admin==1){
+                    Intent intent = new Intent(MainActivity.this , AdminLogin.class);
+                    intent.putExtra("phonenumber", phoneNumber);
+                    startActivity(intent);
+
+
+} else{
+                        Toast.makeText(getApplicationContext(),"You are not an admin",1).show();
+                    }
+                }
+
+                else if(count1==1)*/{
                     Intent intent = new Intent(MainActivity.this , Login.class);
                     intent.putExtra("phonenumber", phoneNumber);
                     startActivity(intent);
@@ -164,6 +195,16 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
+
+            }
+        });
+
+        TextView admin = (TextView) findViewById(R.id.adminlogin);
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this , Admin.class);
+                startActivity(intent);
 
             }
         });
@@ -184,8 +225,14 @@ public class MainActivity extends AppCompatActivity  {
     protected void onStart() {
         super.onStart();
 
+        Intent intent;
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Intent intent = new Intent(this, ProfileActivity.class);
+           /* if(FirebaseAuth.getInstance().getUid().equals("7ZJFZ9btUnWzUMcqHv9bX4ugXZw2"))
+                 intent = new Intent(this, Admin.class);
+
+            else*/
+             intent = new Intent(this, BookingActivity.class);
+
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }

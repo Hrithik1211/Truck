@@ -26,16 +26,36 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
+
         android:background="@drawable/search_layoutbutton"
         android:id="@+id/Logout"
         android:textColor="#581845"
         android:text="Log Out"
+        android:layout_above="@+id/bottomnavigationmenu"
         />
 
 
+<ListView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@+id/Logout"
+    android:id="@+id/list"
+    />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
 
 
+
+
+
+
+        android:id="@+id/bottomnavigationmenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+
+        app:menu="@menu/bottom_navigation_menu"
+        tools:visibility="visible" />
 
 
 </RelativeLayout>

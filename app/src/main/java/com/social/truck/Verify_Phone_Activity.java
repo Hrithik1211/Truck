@@ -101,7 +101,7 @@ public class Verify_Phone_Activity extends AppCompatActivity {
                             ref.child("Mobile").setValue(mnumber);
                             ref = FirebaseDatabase.getInstance().getReference("Registered");
                             ref.child(mnumber).setValue("user");
-                            Intent intent = new Intent(Verify_Phone_Activity.this, ProfileActivity.class);
+                            Intent intent = new Intent(Verify_Phone_Activity.this, BookingActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                             startActivity(intent);

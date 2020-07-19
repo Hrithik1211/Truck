@@ -39,7 +39,8 @@ public class ActivityClick extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_provider,container,false);
+        Log.i("info","activityclick");
+        return inflater.inflate(R.layout.click,container,false);
 
     }
 
@@ -48,10 +49,35 @@ public class ActivityClick extends Fragment {
      ArrayList<String> vehicle = new ArrayList<>();
      ArrayList<String> materialtype = new ArrayList<>();
      ArrayList<String> weight = new ArrayList<>();
+    ArrayList<String> mobile = new ArrayList<>();
+    ArrayList<String> userid = new ArrayList<>();
+    ArrayList<String>  amount= new ArrayList<>();
+
+
+
+    public ActivityClick(String uid, String count, String vechicletype, String mat, String mass, String loc) {
+        this.uid = uid;
+        this.count = count;
+        this.vechicletype = vechicletype;
+        this.mat = mat;
+        this.mass = mass;
+        this.loc = loc;
+    }
+
+    public ActivityClick(int contentLayoutId, String uid, String count, String vechicletype, String mat, String mass, String loc) {
+        super(contentLayoutId);
+        this.uid = uid;
+        this.count = count;
+        this.vechicletype = vechicletype;
+        this.mat = mat;
+        this.mass = mass;
+        this.loc = loc;
+    }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.i("info",vechicletype);
         uid = FirebaseAuth.getInstance().getUid().toString();
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("Customer").child(uid).child("Requests").child(count);
         Query query = rootRef.orderByChild(count);
@@ -61,10 +87,12 @@ public class ActivityClick extends Fragment {
 
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                   if(ds.getKey().equals("MaterialType")||ds.getKey().equals("Status")||ds.getKey().equals("Vehicle")||ds.getKey().equals("Weight"));
+
+                   if(ds.getKey().equals("Status")||ds.getKey().equals("MaterialType")||ds.getKey().equals("Weight")||ds.getKey().equals("Vehicle")||ds.getKey().equals("Location"));
                    else
                    {
                        String string = ds.getKey();
+                       userid.add(string);
                        weight.add(ds.getValue(String.class));
                        Log.i("info",ds.getValue(String.class));
                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Customer").child(string);
@@ -80,8 +108,65 @@ public class ActivityClick extends Fragment {
 
                                    if(dataSnapshot2.getKey().equals("OrganisationName"))
                                        materialtype.add(dataSnapshot2.getValue(String.class));
+                                   if(dataSnapshot2.getKey().equals("Mobile"))
+                                       mobile.add(dataSnapshot2.getValue(String.class));
 
                                }
+
+                               Log.i("info",vehicle.size()+" "+materialtype.size()+" "+weight.size());
+                               final ListView listView = (ListView) view.findViewById(R.id.clicklist);
+                               Adapter arrayAdapter = new Adapter(getContext(),vehicle,materialtype,weight,mobile);
+                               view.findViewById(R.id.clickloadingPanel).setVisibility(View.GONE);
+                               listView.setAdapter(arrayAdapter);
+                               listView.setClickable(true);
+                               listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                   @Override
+                                   public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                                       final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("AdminData").child(uid+userid.get(position)+count);
+                                       databaseReference.child("ProviderName").setValue(vehicle.get(position));
+                                       databaseReference.child("ProviderMobile").setValue(mobile.get(position));
+                                       databaseReference.child("Money").setValue(weight.get(position));
+                                       databaseReference.child("Vehicle").setValue(vechicletype);
+                                       databaseReference.child("Material").setValue(mat);
+                                       databaseReference.child("Weight").setValue(mass);
+                                       databaseReference.child("Location").setValue(loc);
+                                       databaseReference.child("Provider").setValue(userid.get(position));
+                                       databaseReference.child("Customer").setValue(uid);
+                                       databaseReference.child("count").setValue(count);
+
+
+
+                                       databaseReference.child("Status").setValue("0");
+                                       DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference("Customer").child(uid);
+                                       databaseReference1.addValueEventListener(new ValueEventListener() {
+                                           @Override
+                                           public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                               datastring = snapshot.child("Name").getValue(String.class);
+                                               databaseReference.child("CustomerName").setValue(datastring);
+                                               Log.i("info",datastring);
+                                               datastring = snapshot.child("Mobile").getValue(String.class);
+                                               databaseReference.child("CustomerMobile").setValue(datastring);
+                                               Log.i("info",datastring);
+
+
+
+                                           }
+
+                                           @Override
+                                           public void onCancelled(@NonNull DatabaseError error) {
+
+                                           }
+                                       });
+
+                                       AppCompatActivity appCompatActivity = (AppCompatActivity) getContext();
+                                       appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,new Bid()).addToBackStack("list").commit();
+
+
+
+
+
+                                   }
+                               });
 
                            }
 
@@ -98,22 +183,20 @@ public class ActivityClick extends Fragment {
     }
 
 
-                    }
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        {
-                            Log.i("info",vehicle.size()+" "+materialtype.size()+" "+weight.size());
-                            final ListView listView = (ListView) view.findViewById(R.id.providerlist);
-                            Adapter arrayAdapter = new Adapter(getContext(),vehicle,materialtype,weight);
-                            listView.setAdapter(arrayAdapter);
-                        }
-                    }
-                },5000);
 
                     }
+
+                view.findViewById(R.id.clickloadingPanel).setVisibility(View.GONE);
+
+
+
+
+
+            }
+
+
+
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -125,11 +208,8 @@ public class ActivityClick extends Fragment {
 
 
         }
+String vechicletype,mat,mass,loc,datastring;
 
-    public ActivityClick( String uid, String count) {
-        this.uid = uid;
-        this.count = count;
-    }
 
     class Adapter extends ArrayAdapter<String> {
 
@@ -137,15 +217,17 @@ public class ActivityClick extends Fragment {
         ArrayList<String> rvehicle ;
         ArrayList<String> rmaterialtype ;
         ArrayList<String> rweight ;
+        ArrayList<String> rlocation;
 
 
 
-        Adapter (Context c, ArrayList<String> vehicle,ArrayList<String> materialtype,ArrayList<String> weight){
+        Adapter (Context c, ArrayList<String> vehicle,ArrayList<String> materialtype,ArrayList<String> weight, ArrayList<String> location){
             super(c,R.layout.list,vehicle);
             this.context=c;
             this.rvehicle=vehicle;
             this.rmaterialtype = materialtype;
             this.rweight = weight;
+            this.rlocation = location;
 
         }
 
@@ -159,11 +241,13 @@ public class ActivityClick extends Fragment {
             TextView pv = row.findViewById(R.id.providervehicle);
             TextView pm = row.findViewById(R.id.providermaterialtype);
             TextView pw = row.findViewById(R.id.providerweight);
+            TextView pl = row.findViewById(R.id.location);
 
             images.setImageResource(R.drawable.image);
             pv.setText(rvehicle.get(position));
             pm.setText(rmaterialtype.get(position));
             pw.setText(rweight.get(position));
+            pl.setText(rlocation.get(position));
 //            if(rImgs[position] != null && rImgs[position].length()>0)
 //            {
 //                Picasso.get().load(rImgs[position]).placeholder(R.drawable.common_full_open_on_phone).into(images);

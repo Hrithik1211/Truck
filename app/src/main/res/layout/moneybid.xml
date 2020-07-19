@@ -8,7 +8,8 @@
         android:id="@+id/moneyvehicle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
 
 
@@ -17,6 +18,7 @@
         android:padding="5dp"
 
         android:layout_height="wrap_content"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:id="@+id/moneymaterial"
         android:layout_below="@+id/moneyvehicle"
@@ -52,13 +54,41 @@
         android:layout_marginLeft="10dp"
         android:paddingRight="25dp"
         android:paddingLeft="25dp"
+        android:id="@+id/drivernumber"
+        android:inputType="number"
+        android:hint="Driver Mobile Number"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/search_layout"
+        android:layout_below="@+id/drivernumber"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:paddingRight="25dp"
+        android:paddingLeft="25dp"
+        android:id="@+id/vehiclenumber"
+        android:hint="Vehicle Number"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/search_layout"
+        android:layout_below="@+id/vehiclenumber"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:paddingRight="25dp"
+        android:paddingLeft="25dp"
         android:id="@+id/bidmoney"
         android:inputType="number"
         android:hint="Place the Bid"
         />
-
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"

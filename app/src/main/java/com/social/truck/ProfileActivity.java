@@ -21,18 +21,22 @@ import java.util.Stack;
 
 public class ProfileActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         list = new Stack<Fragment>();
 
+
         BottomNavigationView menu = (BottomNavigationView) findViewById(R.id.bottomnavigationmenu);
         menu.setOnNavigationItemSelectedListener(navlistener);
-        list.push(new Booking());
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame,new Booking()).commit();
+      //  list.push(new Booking());
+      //  getSupportFragmentManager().beginTransaction().replace(R.id.frame,new Booking()).commit();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,6 +69,8 @@ public class ProfileActivity extends AppCompatActivity {
         if(list.isEmpty())
         super.onBackPressed();
         else{
+
+
             AppCompatActivity appCompatActivity = (AppCompatActivity) this;
             Fragment favorites_fragment = list.pop();
             appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.frame,favorites_fragment).commit();
@@ -86,7 +92,7 @@ public class ProfileActivity extends AppCompatActivity {
                     selectedFragment = new Provider();
                     break;
                 case R.id.Booking :
-                    selectedFragment = new Booking();
+               //     selectedFragment = new Booking();
 
                     break;
                 case R.id.ongoing :
@@ -98,16 +104,16 @@ public class ProfileActivity extends AppCompatActivity {
                     selectedFragment = new Completed();
             }
 
-            if(selectedFragment!=null){
-                list.push(selectedFragment);
-                try {
+            try {
+                if(selectedFragment!=null){
+                    list.push(selectedFragment);
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame,selectedFragment).commit();
-
-                }
-                catch (Exception e){
-
                 }
             }
+            catch (Exception e){
+                return false;
+            }
+
 
 
             return true;

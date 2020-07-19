@@ -38,9 +38,6 @@ public class Register extends AppCompatActivity {
 
         final ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        spinner = (Spinner) findViewById(R.id.usertype);
-        final String usertype [] = { "Driver" , "Customer"};
-        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, usertype));
         organisationname = (EditText) findViewById(R.id.organisation);
         name = (EditText) findViewById(R.id.name);
         pannumber = (EditText) findViewById(R.id.pannumber);
@@ -106,7 +103,7 @@ public class Register extends AppCompatActivity {
                 gst = gstnumber.getText().toString().trim();
                 emailid = email.getText().toString().trim();
                 mnumber = mobile.getText().toString().trim();
-                user = usertype[spinner.getSelectedItemPosition()];
+                user = "Customer";
                 if (pname.isEmpty()) {
                     name.setError("Valid name is required");
                     name.requestFocus();

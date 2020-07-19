@@ -48,23 +48,11 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:id="@+id/texticon"
-        android:text="Your Order Has Been Placed"
+        android:text="Your Request Has Been Sent To Broker"
         android:gravity="center_horizontal"
         android:fontFamily="sans-serif"
         android:textSize="20dp"
 />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Order ID :"
-        android:layout_below="@+id/texticon"
-        android:fontFamily="sans-serif"
-        android:textSize="20dp"
-        android:id="@+id/id"
-        />
 
     <TextView
         android:layout_width="wrap_content"

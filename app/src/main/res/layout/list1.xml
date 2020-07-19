@@ -4,56 +4,83 @@
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
 
-
-
-
-
-
-
-    <ImageView
-        android:id="@+id/searchimage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/image" />
-
-
-
     <TextView
-        android:id="@+id/providervehicle"
+        android:id="@+id/adminvehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/searchimage"
         android:paddingLeft="10dp"
 
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/providermaterialtype"
+        android:id="@+id/customer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/searchimage"
         android:paddingLeft="10dp"
         android:text="Recipe Name"
         android:textSize="20dp"
-        android:layout_below="@+id/providervehicle"
+        android:layout_below="@+id/adminvehicle"
         />
     <TextView
-        android:id="@+id/providerweight"
+        android:id="@+id/provider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/searchimage"
         android:paddingLeft="10dp"
         android:text="Recipe Name"
-        android:layout_below="@+id/providermaterialtype"
+        android:layout_below="@+id/customer"
         android:textSize="20dp" />
+    <TextView
+        android:id="@+id/money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="Location"
+        android:layout_below="@+id/provider"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="Location"
+        android:layout_below="@+id/provider"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/money"
+        android:textSize="20dp" />
+
+
+    <TextView
+        android:id="@+id/material"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="Location"
+        android:layout_below="@+id/provider"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/weight"
+        android:textSize="20dp" />
+
     <TextView
         android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/searchimage"
         android:paddingLeft="10dp"
         android:text="Location"
-        android:layout_below="@+id/providerweight"
+        android:layout_below="@+id/weight"
+        android:layout_marginLeft="10dp"
         android:textSize="20dp" />
+
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/search_layoutbutton"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@+id/location"
+    android:layout_marginTop="5dp"
+android:text="Confirm"
+    android:id="@+id/admin"
+    />
+
 
 </RelativeLayout>

@@ -10,50 +10,71 @@
 
 
 
-    <ImageView
-        android:id="@+id/searchimage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/image" />
+
 
 
 
     <TextView
-        android:id="@+id/providervehicle"
+        android:id="@+id/pvehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/searchimage"
         android:paddingLeft="10dp"
 
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/providermaterialtype"
+        android:id="@+id/pmaterialtype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/searchimage"
         android:paddingLeft="10dp"
         android:text="Recipe Name"
         android:textSize="20dp"
-        android:layout_below="@+id/providervehicle"
+        android:layout_below="@+id/pvehicle"
         />
     <TextView
-        android:id="@+id/providerweight"
+        android:id="@+id/pweight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/searchimage"
         android:paddingLeft="10dp"
         android:text="Recipe Name"
-        android:layout_below="@+id/providermaterialtype"
+        android:layout_below="@+id/pmaterialtype"
         android:textSize="20dp" />
     <TextView
-        android:id="@+id/location"
+        android:id="@+id/plocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/searchimage"
         android:paddingLeft="10dp"
         android:text="Location"
-        android:layout_below="@+id/providerweight"
+        android:layout_below="@+id/pweight"
         android:textSize="20dp" />
+
+
+    <TextView
+        android:id="@+id/pdrivernumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="Location"
+        android:layout_below="@+id/plocation"
+        android:textSize="20dp" />
+    <TextView
+        android:id="@+id/pvehiclenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="Location"
+        android:layout_below="@+id/pdrivernumber"
+        android:textSize="20dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/search_layoutbutton"
+        android:text="Track"
+        android:id="@+id/pbutton"
+        />
+
 
 </RelativeLayout>

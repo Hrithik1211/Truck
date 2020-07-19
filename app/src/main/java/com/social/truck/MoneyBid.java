@@ -8,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +33,7 @@ public class MoneyBid extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.moneybid,container,false);
 
     }
@@ -51,6 +54,7 @@ public class MoneyBid extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         Log.i("info",vehicle+" "+materialtype+" "+weight+" ");
         TextView pvehicle = (TextView) view.findViewById(R.id.moneyvehicle);
         TextView pmaterial = (TextView) view.findViewById(R.id.moneymaterial);
@@ -61,18 +65,27 @@ public class MoneyBid extends Fragment {
         pweight.setText(weight);
         plocation.setText("Location");
         final EditText editText = (EditText) view.findViewById(R.id.bidmoney);
-        final String money = editText.getText().toString().trim();
+        final EditText vehiclenumber = (EditText) view.findViewById(R.id.vehiclenumber);
+        final EditText drivernumber = (EditText) view.findViewById(R.id.drivernumber);
+
         Button button = (Button) view.findViewById(R.id.submit);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                  String money = editText.getText().toString().trim();
+                String vn = vehiclenumber.getText().toString().trim();
+                String driver = drivernumber.getText().toString().trim();
                 String string = FirebaseAuth.getInstance().getUid().toString();
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Customer").child(uid).child("Requests").child(count);
                 ref.child(string).setValue(money);
                 ref.child("Vehicle").setValue(vehicle);
                 ref.child("Weight").setValue(weight);
                 ref.child("MaterialType").setValue(materialtype);
+                ref.child("DriverNumber").setValue(driver);
+                ref.child("VehicleNumber").setValue(vn);
+
+                AppCompatActivity appCompatActivity = (AppCompatActivity) getContext();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,new Bid()).addToBackStack("list1").commit();
             }
         });
 
